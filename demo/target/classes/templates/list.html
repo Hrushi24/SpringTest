@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="layout.html::metablock" >
+	<meta charset="UTF-8" />
+	<title>Home PAge</title>
+	
+</head>
+
+<body>
+	<h1>This is <a href="/user/list">List</a> page</h1>
+
+	
+	<header th:insert="layout.html::headerblock"></header>
+	
+	<div class="px-3 my-3">
+		<table class="table"   >
+		  <thead class="table-dark">
+		    <tr>
+		      <th scope="col">Id</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">City</th>
+		      <th scope="col">Email</th>
+			  <th scope="col">Password</th>
+		    </tr>
+		  </thead>
+		  <tbody class="table-success">
+		    <tr th:each="user:${users}">
+		      <th scope="row" th:text="${user.getId()}" ></th>
+		      <td th:text="${user.getName()}"></td>
+		      <td th:text="${user.getCity()}"></td>
+		      <td th:text="${user.getEmail()}"></td>
+			  <td th:text="${user.getPassword()}"></td>
+			  <td><a th:href="@{/user/edit/{id}(id=${user.getId})}">Edit</a></td>
+			  <td><a th:href="@{/user/delete(id=${user.getId})}">Delete</a>	</td>	
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+
+
+	<foooter th:replace="layout.html::footerblock"></foooter>
+	
+	<!-- 
+		<h2 th:text="'Name is: '+ ${n}"></h2> 
+		//This part is used to take value from backend and to display it on frontend
+		-->
+</body>
+</html>
